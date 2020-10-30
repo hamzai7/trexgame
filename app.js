@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 const dino = document.querySelector('.dino')
+const grid = document.querySelector('.grid')
 let isJumping = false
 let gravity = 0.9
 
@@ -47,7 +48,9 @@ function generateObstacles () {
     let obstaclePosition = 1000
     const obstacle = document.createElement('div')
     obstacle.classList.add('obstacle')
+    grid.appendChild(obstacle)
+    obstacle.style.left = obstaclePosition + 'px'
 }
-
+generateObstacles()
 
 })
