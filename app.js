@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 const dino = document.querySelector('.dino')
 const grid = document.querySelector('.grid')
+const alert = document.getElementById('alert')
 let isJumping = false
 let gravity = 0.9
 let isGameOver = false
@@ -49,15 +50,19 @@ function generateObstacles () {
     let randomTime = Math.random() * 4000
     let obstaclePosition = 1000
     const obstacle = document.createElement('div')
-    obstacle.classList.add('obstacle')
+    if (!isGameOver) obstacle.classList.add('obstacle')
     grid.appendChild(obstacle)
     obstacle.style.left = obstaclePosition + 'px'
 
     let timerId = setInterval(function () {
         if (obstaclePosition > 0 && obstaclePosition < 60 && position <60 ) {
             clearInterval(timerId)
-            alert('Game Over')
+            alert.innerHTML = 'Game Over'
             isGameOver = true
+            // remove all children
+            while (grid.firstChild) {
+                grid.removeChild(grid.lastChild)
+            }
         }
 
         obstaclePosition -=10
@@ -65,6 +70,6 @@ function generateObstacles () {
     },20)
     if (!isGameOver) setTimeout(generateObstacles, randomTime) //wait random time period before generating obstacle
 }
-//generateObstacles()
+generateObstacles()
 
 })
