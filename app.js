@@ -3,6 +3,7 @@ const dino = document.querySelector('.dino')
 const grid = document.querySelector('.grid')
 let isJumping = false
 let gravity = 0.9
+let isGameOver = false
 
 function control(e) {
     if (e.keyCode === 32) {
@@ -45,12 +46,25 @@ function jump() {
 }
 
 function generateObstacles () {
+    let randomTime = Math.random() * 4000
     let obstaclePosition = 1000
     const obstacle = document.createElement('div')
     obstacle.classList.add('obstacle')
     grid.appendChild(obstacle)
     obstacle.style.left = obstaclePosition + 'px'
+
+    let timerId = setInterval(function () {
+        if (obstaclePosition > 0 && obstaclePosition < 60 && position <60 ) {
+            clearInterval(timerId)
+            alert('Game Over')
+            isGameOver = true
+        }
+
+        obstaclePosition -=10
+        obstacle.style.left = obstaclePosition + 'px'
+    },20)
+    if (!isGameOver) setTimeout(generateObstacles, randomTime) //wait random time period before generating obstacle
 }
-generateObstacles()
+//generateObstacles()
 
 })
