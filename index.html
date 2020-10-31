@@ -8,9 +8,23 @@
     <script src="app.js" charset="utf-8"></script>
 </head>
 <body>
+
     <h2 id="alert"></h2>
     <div class="grid">
         <div class="dino"></div>
     </div>
+
+    <!-- <button data-modal-target="#modal" class="modal-button">Open Modal</button> --> 
+    <div class="modal" id="modal">
+        <div class="modal-header">
+            <div class="title">Game Over</div>
+            <button data-close-button class="close-button">&times;</button>
+        </div>
+        <div class="modal-body">
+           Refresh page to play again
+        </div>
+    </div>
+    <div id="overlay"></div>
+
 </body>
 </html>
